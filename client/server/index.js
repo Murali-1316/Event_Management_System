@@ -9,9 +9,10 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const app = express();
 app.use(cors());
 app.use(express.json());
+require("dotenv").config()
 
-// Use your MongoDB URI from .env or hardcoded for now
-const uri = process.env.MONGO_URI || "mongodb+srv://murali1316:rLhmpWNLOH4BcvZJ@cluster0.8ji869q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// Use your MongoDB URI from .env or fallback for development
+const uri = process.env.MONGO_URI || process.env.mongo_url || 'mongodb://localhost:27017/event_management'
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
